@@ -23,9 +23,9 @@ function run() {
             const settings = Object.assign(Object.assign({}, constants_1.action), { 
                 // Set the default branch for Node configurations
                 branch: !(0, util_1.isNullOrUndefined)(constants_1.action.branch) ? constants_1.action.branch : "gh-pages" });
-            (0, core_1.info)("⚙️g #1. generateBadge...");
+            (0, core_1.info)("#1. generateBadge...");
             yield (0, badge_1.generateBadge)(settings);
-            (0, core_1.info)("⚙️  #2. github deploy...");
+            (0, core_1.info)("#2. github deploy...");
             status = yield (0, gh_deploy_1.githubDeploy)(settings);
         }
         catch (e) {

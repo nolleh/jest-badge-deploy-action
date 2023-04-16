@@ -22,10 +22,10 @@ async function run() {
       branch: !isNullOrUndefined(action.branch) ? action.branch : "gh-pages",
     };
 
-    info("⚙️g #1. generateBadge...");
+    info("#1. generateBadge...");
     await generateBadge(settings);
 
-    info("⚙️  #2. github deploy...");
+    info("#2. github deploy...");
     status = await githubDeploy(settings);
   } catch (e) {
     status = Status.FAILED;

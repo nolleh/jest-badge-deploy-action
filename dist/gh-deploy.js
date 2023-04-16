@@ -14,9 +14,17 @@ const util_1 = require("./util");
 const git_1 = require("./git");
 function githubDeploy(settings) {
     return __awaiter(this, void 0, void 0, function* () {
+        // Defines the repository/folder paths and token types.
+        // Also verifies that the action has all of the required parameters.
+        settings.folderPath = (0, util_1.generateFolderPath)(settings);
+        (0, util_1.checkParameters)(settings);
+        settings.repositoryPath = (0, util_1.generateRepositoryPath)(settings);
+        settings.tokenType = (0, util_1.generateTokenType)(settings);
         if (settings.sshKey) {
             yield (0, util_1.ssh)(settings);
         }
+        // Defines the repository/folder paths and token types.
+        // Also verifies that the action has all of the required parameters.
         yield (0, git_1.init)(settings);
         return yield (0, git_1.deploy)(settings);
     });
