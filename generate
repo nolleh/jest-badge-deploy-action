@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+yarn install
+
 if [ "$1" == "release" ]; then
   echo "release branch. set gitignore files for prod"
 	cp -f .gitignore .gitignore.main
