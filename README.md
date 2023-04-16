@@ -7,6 +7,14 @@ super convinently.
 > and  
 > [github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action)
 
+## Example
+
+[![Coverage Status](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-jest%20coverage.svg?raw=true)
+
+```markdown
+[![Coverage Status](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-jest%20coverage.svg?raw=true)
+```
+
 ## No Need Headache For Permission
 
 don't be bothered to permission for your repository (token or private repo or whatever)  
