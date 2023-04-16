@@ -127,8 +127,8 @@ export const action: ActionInterface = {
 /** Types for the required action parameters. */
 export type RequiredActionParameters = Pick<
   ActionInterface,
-  'token' | 'sshKey' | 'branch' | 'folder' | 'isTest'
->
+  "token" | "sshKey" | "branch" | "folder" | "isTest"
+>;
 
 /** Status codes for the action. */
 export enum Status {
