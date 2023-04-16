@@ -63,7 +63,7 @@ jobs:
 
       ### this step!
       - name: generate badge and pub 2 github pages
-        uses: nolleh/jest-badge-deploy-action@v1.0.1
+        uses: nolleh/jest-badge-deploy-action@v1.0.2
 ```
 
 in your markdown (README.md)  
