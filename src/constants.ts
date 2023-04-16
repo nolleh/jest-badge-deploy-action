@@ -64,7 +64,10 @@ export interface ActionInterface {
 /* Required action data that gets initialized when running within the GitHub Actions environment. */
 export const action: ActionInterface = {
   coverageSummaryPath: getInput("coverage-summary-path"),
-  folder: getInput("folder"),
+  folder: !isNullOrUndefined(getInput("folder"))
+    ? getInput("folder")
+    : "badges",
+
   branch: getInput("branch"),
   commitMessage: getInput("commit-message"),
   dryRun: !isNullOrUndefined(getInput("dry-run"))

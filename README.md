@@ -16,6 +16,18 @@ because this badge file no need to uploaded to elsewhere but your repo.
 
 add to your github action...
 
+1. run test to make json-summary
+in your package.json or jest.config.json, add json-summary
+
+```json
+{
+  "jest": {
+    "coverageReporters": ["json-summary", "text"]
+  }
+}
+```
+2. add jest-badge-deploy-action
+
 ```yaml
 name: ci
 on: [push]
@@ -37,9 +49,6 @@ jobs:
       ### this step!
       - name: generate badge and pub 2 github pages
         uses: nolleh/jest-badge-deploy-action@latest
-        with:
-          branches: main
-          folder: badges
 ```
 
 in your markdown (README.md)  
@@ -51,11 +60,10 @@ import your gh-pages branches svg.
 [![Coverage Status](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-jest%20coverage.svg?raw=true)
 ```
 
-## Options
+## Additional Useful Options
 
 | name     | description                                    | default |
 | -------- | ---------------------------------------------- | ------- |
-| branches | action works when specified branch was pushed  |         |
 | folder   | where to push badge in remote branch(gh-pages) |         |
 
 ## How It Work
@@ -64,4 +72,4 @@ import your gh-pages branches svg.
 - by using jest:json-summary, generate badge.
 - the generated badges pushed to the special branch (gh-pages)
 - these all process worked in your ci workflow, and it has permission to your repository.
-- Booyah!
+- *Booyah*!
