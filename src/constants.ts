@@ -122,7 +122,9 @@ export const action: ActionInterface = {
       getInput("ssh-key").toLowerCase() === "true"
     ? true
     : getInput("ssh-key"),
-  targetFolder: getInput("target-folder"),
+  targetFolder: !isNullOrUndefined(getInput("target-folder"))
+    ? getInput("target-folder")
+    : "badges",
   workspace: process.env.GITHUB_WORKSPACE || "",
   tag: getInput("tag"),
 };
