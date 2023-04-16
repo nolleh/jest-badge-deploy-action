@@ -124,6 +124,12 @@ export const action: ActionInterface = {
   tag: getInput("tag"),
 };
 
+/** Types for the required action parameters. */
+export type RequiredActionParameters = Pick<
+  ActionInterface,
+  'token' | 'sshKey' | 'branch' | 'folder' | 'isTest'
+>
+
 /** Status codes for the action. */
 export enum Status {
   SUCCESS = "success",
