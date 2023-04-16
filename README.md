@@ -75,12 +75,6 @@ import your gh-pages branches svg.
 [![Coverage Status](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-jest%20coverage.svg?raw=true)
 ```
 
-## Additional Useful Options
-
-| name     | description                                    | default |
-| -------- | ---------------------------------------------- | ------- |
-| folder   | where to push badge in remote branch(gh-pages) |         |
-
 ## How It Work
 
 - gh-pages branch is special branch in github to upload static files. (deployed)
