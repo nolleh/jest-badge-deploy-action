@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "release" ]; then
+  echo "release branch. set gitignore files for prod"
+	cp -f .gitignore .gitignore.main
+	cp -f .gitignore.tags .gitignore
+else
+  echo "main branch. set gitignore files for dev"
+  cp -f .gitignore .gitignore.tags
+  cp -f .gitignore.main .gitignore
+fi
+
+yarn build
