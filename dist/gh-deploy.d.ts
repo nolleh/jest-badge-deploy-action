@@ -1,4 +1,2 @@
 import { ActionInterface, Status } from "./constants";
-export declare function githubDeploy(
-  settings: ActionInterface
-): Promise<Status>;
+export declare function githubDeploy(settings: ActionInterface): Promise<Status>;
