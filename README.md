@@ -53,10 +53,10 @@ import your gh-pages branches svg.
 
 ## Options
 
-| name          | description                                    | default |
-| ------------- | ---------------------------------------------- | ------- |
-| branches      | action works when specified branch was pushed  |         |
-| target-folder | where to push badge in remote branch(gh-pages) |         |
+| name     | description                                    | default |
+| -------- | ---------------------------------------------- | ------- |
+| branches | action works when specified branch was pushed  |         |
+| folder   | where to push badge in remote branch(gh-pages) |         |
 
 ## How It Work
 
