@@ -9,7 +9,14 @@ super convinently.
 
 ## Example
 
-[![Coverage Status](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-jest%20coverage.svg?raw=true)
+
+[![Coverage Branches](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-branches.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-branches.svg?raw=true)
+[![Coverage Functions](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-functions.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-functions.svg?raw=true)
+[![Coverage](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-jest%20coverage.svg?raw=true)
+[![Coverage Lines](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-lines.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-lines.svg?raw=true)
+[![Coverage Statements](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-statements.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-statements.svg?raw=true)
+
+it looks like only work for 100% badge, but actially cacluated.. (cause this example -simple-csv-parser- cover 100%)
 
 ```markdown
 [![Coverage Status](https://github.com/nolleh/simple-csv-parser/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)](https://nolleh.github.io/simple-csv-parser/badges/coverage-jest%20coverage.svg?raw=true)
