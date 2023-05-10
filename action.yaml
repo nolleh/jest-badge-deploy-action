@@ -1,4 +1,4 @@
-name: "Generate Badge And Deploy to GitHub Pages"
+name: "Jest Coverage Badge to Page"
 description: "This action will make jest coverage badge and deploy to Github Pages"
 author: "nolleh <nolleh7707@gmail.com>"
 runs:
