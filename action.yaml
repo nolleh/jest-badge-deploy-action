@@ -1,5 +1,5 @@
-name: "Jest Coverage Badge to Page"
-description: "This action will make jest coverage badge and deploy to Github Pages"
+name: "Jest Coverage Badge Publisher"
+description: "This action will make jest coverage badge and deploy to your branch"
 author: "nolleh <nolleh7707@gmail.com>"
 runs:
   using: "node16"
