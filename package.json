@@ -1,6 +1,6 @@
 {
   "name": "jest-badge-deploy-action",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "github action create badge and push to gh-pages",
   "main": "dist/main.js",
   "scripts": {
@@ -38,7 +38,5 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
-  "lint-staged": {
-    "*.(js,jsx,ts,md,json)": "yarn format"
-  }
+  "lint-staged": {}
 }
