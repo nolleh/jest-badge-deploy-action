@@ -1,7 +1,7 @@
 import { info } from "@actions/core";
-import { ActionInterface } from "./constants";
-import { execute } from "./execute";
-import { extractErrorMessage, suppressSensitiveInformation } from "./util";
+import { ActionInterface } from "../constants";
+import { execute } from "../execute";
+import { extractErrorMessage, suppressSensitiveInformation } from "../util";
 
 export class GitCheckout {
   orphan = false;

@@ -6,14 +6,14 @@ import {
   DefaultExcludedFiles,
   Status,
   TestFlag,
-} from "./constants";
-import { execute } from "./execute";
+} from "../constants";
+import { execute } from "../execute";
 import { generateWorktree } from "./worktree";
 import {
   extractErrorMessage,
   isNullOrUndefined,
   suppressSensitiveInformation,
-} from "./util";
+} from "../util";
 
 /**
  * Initializes git in the workspace.
