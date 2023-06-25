@@ -71,8 +71,8 @@ jobs:
         run: pnpm test:cov
 
       ### this step!
-      - name: generate badge and pub 2 github pages
-        uses: nolleh/jest-badge-deploy-action@v1.0.3
+      - name: Cov Badge And Publish
+        uses: nolleh/jest-badge-deploy-action@latest
 ```
 
 in your markdown (README.md)  

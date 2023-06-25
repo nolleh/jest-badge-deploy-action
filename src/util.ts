@@ -67,19 +67,21 @@ export async function ssh(action: ActionInterface): Promise<void> {
 }
 
 /* Generates a token type used for the action. */
-export const generateTokenType = (action: ActionInterface): string =>
-  action.sshKey ? "SSH Deploy Key" : action.token ? "Deploy Token" : "…";
+export function generateTokenType(action: ActionInterface): string {
+  return action.sshKey ? "SSH Deploy Key" : action.token ? "Deploy Token" : "…";
+}
 
 /* Generates a the repository path used to make the commits. */
-export const generateRepositoryPath = (action: ActionInterface): string =>
-  action.sshKey
+export function generateRepositoryPath(action: ActionInterface): string {
+  return action.sshKey
     ? `git@${action.hostname}:${action.repositoryName}`
     : `https://${`x-access-token:${action.token}`}@${action.hostname}/${
         action.repositoryName
       }.git`;
+}
 
 /* Genetate absolute folder path by the provided folder name */
-export const generateFolderPath = (action: ActionInterface): string => {
+export function generateFolderPath(action: ActionInterface): string {
   const folderName = action["folder"];
   return path.isAbsolute(folderName)
     ? folderName
@@ -88,10 +90,10 @@ export const generateFolderPath = (action: ActionInterface): string => {
     : path.join(action.workspace, folderName);
 };
 
-const hasRequiredParameters = <K extends keyof RequiredActionParameters>(
+export function hasRequiredParameters<K extends keyof RequiredActionParameters>(
   action: ActionInterface,
   params: K[]
-): boolean => {
+): boolean {
   const nonNullParams = params.filter(
     (param) => !isNullOrUndefined(action[param])
   );
@@ -99,7 +101,7 @@ const hasRequiredParameters = <K extends keyof RequiredActionParameters>(
 };
 
 /* Verifies the action has the required parameters to run, otherwise throw an error. */
-export const checkParameters = (action: ActionInterface): void => {
+export function checkParameters(action: ActionInterface): void {
   if (!hasRequiredParameters(action, ["token", "sshKey"])) {
     throw new Error(
       "No deployment token/method was provided. You must provide the action with either a Personal Access Token or the GitHub Token secret in order to deploy. If you wish to use an ssh deploy token then you must set SSH to true."
@@ -145,5 +147,6 @@ function replaceAll(input: string, find: string, replace: string): string {
 /**
  * Strips the protocol from a provided URL.
  */
-export const stripProtocolFromUrl = (url: string): string =>
-  url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
+export function stripProtocolFromUrl(url: string): string {
+  return url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
+}

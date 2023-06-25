@@ -1,5 +1,5 @@
 import { info } from "@actions/core";
-import { ActionInterface } from "./constants";
+import { ActionInterface } from "../constants";
 import { pathExists, readJson } from "fs-extra";
 import {
   generateBadges,
@@ -45,8 +45,7 @@ export async function generateBadge(settings: ActionInterface) {
   await doBadgesExist(outputPath);
 
   info(
-    `🔶 Generating badges from ${
-      summaryPath ? summaryPath : "default coverage summary path"
+    `🔶 Generating badges from ${summaryPath ? summaryPath : "default coverage summary path"
     }`
   );
 

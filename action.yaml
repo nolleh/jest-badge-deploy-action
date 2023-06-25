@@ -1,4 +1,4 @@
-name: "Jest Coverage Badge Publisher"
+name: "Jest Coverage Badge Deploy"
 description: "This action will make jest coverage badge and deploy to your branch"
 author: "nolleh <nolleh7707@gmail.com>"
 runs:

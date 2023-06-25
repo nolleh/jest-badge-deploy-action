@@ -7,8 +7,8 @@ import {
 } from "@actions/core";
 import { extractErrorMessage, isNullOrUndefined } from "./util";
 import { action, ActionInterface, Status } from "./constants";
-import { githubDeploy } from "./gh-deploy";
-import { generateBadge } from "./badge";
+import { generateBadge } from "./badge/badge";
+import { githubDeploy } from "./deploy/gh-deploy";
 
 async function run() {
   let status = Status.RUNNING;

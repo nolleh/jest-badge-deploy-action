@@ -1,11 +1,11 @@
-import { ActionInterface, Status } from "./constants";
+import { ActionInterface, Status } from "../constants";
 import {
   ssh,
   generateFolderPath,
   checkParameters,
   generateRepositoryPath,
   generateTokenType,
-} from "./util";
+} from "../util";
 import { deploy, init } from "./git";
 
 export async function githubDeploy(settings: ActionInterface): Promise<Status> {
