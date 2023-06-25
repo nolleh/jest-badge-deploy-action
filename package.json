@@ -1,6 +1,6 @@
 {
   "name": "jest-badge-deploy-action",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "github action create badge and push to gh-pages",
   "main": "dist/main.js",
   "scripts": {

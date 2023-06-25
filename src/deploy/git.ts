@@ -153,9 +153,9 @@ export async function deploy(action: ActionInterface): Promise<Status> {
       }
     }
 
-    if (action.targetFolder) {
+    if (action.folder) {
       info(`Creating target folder if it doesn't already exist… 📌`);
-      await mkdirP(`${temporaryDeploymentDirectory}/${action.targetFolder}`);
+      await mkdirP(`${temporaryDeploymentDirectory}/${action.folder}`);
     }
 
     /*
@@ -164,8 +164,8 @@ export async function deploy(action: ActionInterface): Promise<Status> {
       rsync is used to prevent file duplication. */
     await execute(
       `rsync -q -av --checksum --progress ${action.folderPath}/. ${
-        action.targetFolder
-          ? `${temporaryDeploymentDirectory}/${action.targetFolder}`
+        action.folder
+          ? `${temporaryDeploymentDirectory}/${action.folder}`
           : temporaryDeploymentDirectory
       } ${
         action.clean
@@ -228,7 +228,7 @@ export async function deploy(action: ActionInterface): Promise<Status> {
     if (
       (!action.singleCommit && !hasFilesToCommit) ||
       // Ignores the case where single commit is true with a target folder to prevent incorrect early exiting.
-      (action.singleCommit && !action.targetFolder && !hasFilesToCommit)
+      (action.singleCommit && !action.folder && !hasFilesToCommit)
     ) {
       return Status.SKIPPED;
     }
