@@ -50,8 +50,6 @@ export interface ActionInterface {
   silent: boolean;
   /** Defines an SSH private key that can be used during deployment. This can also be set to true to use SSH deployment endpoints if you've already configured the SSH client outside of this package. */
   sshKey?: string | boolean | null;
-  /** If you'd like to push the contents of the deployment folder into a specific directory on the deployment branch you can specify it here. */
-  targetFolder?: string;
   /** Deployment token. */
   token?: string | null;
   /** The token type, ie ssh/token, this gets automatically generated. */
@@ -89,26 +87,24 @@ export const action: ActionInterface = {
   email: !isNullOrUndefined(getInput("git-config-email"))
     ? getInput("git-config-email")
     : pusher && pusher.email
-    ? pusher.email
-    : `${
-        process.env.GITHUB_ACTOR || "github-pages-deploy-action"
-      }@users.noreply.${
-        process.env.GITHUB_SERVER_URL
-          ? stripProtocolFromUrl(process.env.GITHUB_SERVER_URL)
-          : "github.com"
+      ? pusher.email
+      : `${process.env.GITHUB_ACTOR || "github-pages-deploy-action"
+      }@users.noreply.${process.env.GITHUB_SERVER_URL
+        ? stripProtocolFromUrl(process.env.GITHUB_SERVER_URL)
+        : "github.com"
       }`,
   name: !isNullOrUndefined(getInput("git-config-name"))
     ? getInput("git-config-name")
     : pusher && pusher.name
-    ? pusher.name
-    : process.env.GITHUB_ACTOR
-    ? process.env.GITHUB_ACTOR
-    : "GitHub Pages Deploy Action",
+      ? pusher.name
+      : process.env.GITHUB_ACTOR
+        ? process.env.GITHUB_ACTOR
+        : "GitHub Pages Deploy Action",
   repositoryName: !isNullOrUndefined(getInput("repository-name"))
     ? getInput("repository-name")
     : repository && repository.full_name
-    ? repository.full_name
-    : process.env.GITHUB_REPOSITORY,
+      ? repository.full_name
+      : process.env.GITHUB_REPOSITORY,
   token: getInput("token"),
   singleCommit: !isNullOrUndefined(getInput("single-commit"))
     ? getInput("single-commit").toLowerCase() === "true"
@@ -120,11 +116,8 @@ export const action: ActionInterface = {
     ? false
     : !isNullOrUndefined(getInput("ssh-key")) &&
       getInput("ssh-key").toLowerCase() === "true"
-    ? true
-    : getInput("ssh-key"),
-  targetFolder: !isNullOrUndefined(getInput("target-folder"))
-    ? getInput("target-folder")
-    : "badges",
+      ? true
+      : getInput("ssh-key"),
   workspace: process.env.GITHUB_WORKSPACE || "",
   tag: getInput("tag"),
 };

@@ -7,7 +7,7 @@ import {
 } from "@actions/core";
 import { extractErrorMessage, isNullOrUndefined } from "./util";
 import { action, ActionInterface, Status } from "./constants";
-import { generateBadge } from "./badge/badge";
+import { generateBadge } from "./badge/jestcov";
 import { githubDeploy } from "./deploy/gh-deploy";
 
 async function run() {
