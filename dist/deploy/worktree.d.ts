@@ -1,4 +1,4 @@
-import { ActionInterface } from "./constants";
+import { ActionInterface } from "../constants";
 export declare class GitCheckout {
     orphan: boolean;
     commitish?: string | null;

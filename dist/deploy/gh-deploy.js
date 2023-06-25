@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.githubDeploy = void 0;
-const util_1 = require("./util");
+const util_1 = require("../util");
 const git_1 = require("./git");
 function githubDeploy(settings) {
     return __awaiter(this, void 0, void 0, function* () {

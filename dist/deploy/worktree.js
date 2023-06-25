@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateWorktree = exports.GitCheckout = void 0;
 const core_1 = require("@actions/core");
-const execute_1 = require("./execute");
-const util_1 = require("./util");
+const execute_1 = require("../execute");
+const util_1 = require("../util");
 class GitCheckout {
     constructor(branch) {
         this.orphan = false;

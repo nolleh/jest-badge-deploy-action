@@ -42,8 +42,6 @@ export interface ActionInterface {
     silent: boolean;
     /** Defines an SSH private key that can be used during deployment. This can also be set to true to use SSH deployment endpoints if you've already configured the SSH client outside of this package. */
     sshKey?: string | boolean | null;
-    /** If you'd like to push the contents of the deployment folder into a specific directory on the deployment branch you can specify it here. */
-    targetFolder?: string;
     /** Deployment token. */
     token?: string | null;
     /** The token type, ie ssh/token, this gets automatically generated. */

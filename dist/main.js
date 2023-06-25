@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@actions/core");
 const util_1 = require("./util");
 const constants_1 = require("./constants");
-const gh_deploy_1 = require("./gh-deploy");
-const badge_1 = require("./badge");
+const jestcov_1 = require("./badge/jestcov");
+const gh_deploy_1 = require("./deploy/gh-deploy");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         let status = constants_1.Status.RUNNING;
@@ -24,7 +24,7 @@ function run() {
                 // Set the default branch for Node configurations
                 branch: !(0, util_1.isNullOrUndefined)(constants_1.action.branch) ? constants_1.action.branch : "gh-pages" });
             (0, core_1.info)("#1. generateBadge...");
-            yield (0, badge_1.generateBadge)(settings);
+            yield (0, jestcov_1.generateBadge)(settings);
             (0, core_1.info)("#2. github deploy...");
             status = yield (0, gh_deploy_1.githubDeploy)(settings);
         }

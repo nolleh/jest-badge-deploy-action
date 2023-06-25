@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stripProtocolFromUrl = exports.suppressSensitiveInformation = exports.checkParameters = exports.generateFolderPath = exports.generateRepositoryPath = exports.generateTokenType = exports.ssh = exports.isNullOrUndefined = exports.extractErrorMessage = void 0;
+exports.stripProtocolFromUrl = exports.suppressSensitiveInformation = exports.checkParameters = exports.hasRequiredParameters = exports.generateFolderPath = exports.generateRepositoryPath = exports.generateTokenType = exports.ssh = exports.isNullOrUndefined = exports.extractErrorMessage = void 0;
 const core_1 = require("@actions/core");
 const fs_1 = require("fs");
 const child_process_1 = require("child_process");
@@ -65,29 +65,36 @@ function ssh(action) {
 }
 exports.ssh = ssh;
 /* Generates a token type used for the action. */
-const generateTokenType = (action) => action.sshKey ? "SSH Deploy Key" : action.token ? "Deploy Token" : "…";
+function generateTokenType(action) {
+    return action.sshKey ? "SSH Deploy Key" : action.token ? "Deploy Token" : "…";
+}
 exports.generateTokenType = generateTokenType;
 /* Generates a the repository path used to make the commits. */
-const generateRepositoryPath = (action) => action.sshKey
-    ? `git@${action.hostname}:${action.repositoryName}`
-    : `https://${`x-access-token:${action.token}`}@${action.hostname}/${action.repositoryName}.git`;
+function generateRepositoryPath(action) {
+    return action.sshKey
+        ? `git@${action.hostname}:${action.repositoryName}`
+        : `https://${`x-access-token:${action.token}`}@${action.hostname}/${action.repositoryName}.git`;
+}
 exports.generateRepositoryPath = generateRepositoryPath;
 /* Genetate absolute folder path by the provided folder name */
-const generateFolderPath = (action) => {
+function generateFolderPath(action) {
     const folderName = action["folder"];
     return path_1.default.isAbsolute(folderName)
         ? folderName
         : folderName.startsWith("~")
             ? folderName.replace("~", process.env.HOME)
             : path_1.default.join(action.workspace, folderName);
-};
+}
 exports.generateFolderPath = generateFolderPath;
-const hasRequiredParameters = (action, params) => {
+;
+function hasRequiredParameters(action, params) {
     const nonNullParams = params.filter((param) => !isNullOrUndefined(action[param]));
     return Boolean(nonNullParams.length);
-};
+}
+exports.hasRequiredParameters = hasRequiredParameters;
+;
 /* Verifies the action has the required parameters to run, otherwise throw an error. */
-const checkParameters = (action) => {
+function checkParameters(action) {
     if (!hasRequiredParameters(action, ["token", "sshKey"])) {
         throw new Error("No deployment token/method was provided. You must provide the action with either a Personal Access Token or the GitHub Token secret in order to deploy. If you wish to use an ssh deploy token then you must set SSH to true.");
     }
@@ -100,8 +107,9 @@ const checkParameters = (action) => {
     if (!(0, fs_1.existsSync)(action.folderPath)) {
         throw new Error(`The directory you're trying to deploy named ${action.folderPath} doesn't exist. Please double check the path and any prerequisite build scripts and try again. ❗`);
     }
-};
+}
 exports.checkParameters = checkParameters;
+;
 function suppressSensitiveInformation(str, action) {
     let value = str;
     const orderedByLength = [action.token, action.repositoryPath].filter(Boolean).sort((a, b) => b.length - a.length);
@@ -117,5 +125,7 @@ function replaceAll(input, find, replace) {
 /**
  * Strips the protocol from a provided URL.
  */
-const stripProtocolFromUrl = (url) => url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
+function stripProtocolFromUrl(url) {
+    return url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
+}
 exports.stripProtocolFromUrl = stripProtocolFromUrl;

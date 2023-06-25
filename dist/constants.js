@@ -41,7 +41,9 @@ var TestFlag;
 /* Required action data that gets initialized when running within the GitHub Actions environment. */
 exports.action = {
     coverageSummaryPath: (0, core_1.getInput)("coverage-summary-path"),
-    folder: (0, core_1.getInput)("folder"),
+    folder: !(0, util_1.isNullOrUndefined)((0, core_1.getInput)("folder"))
+        ? (0, core_1.getInput)("folder")
+        : "badges",
     branch: (0, core_1.getInput)("branch"),
     commitMessage: (0, core_1.getInput)("commit-message"),
     dryRun: !(0, util_1.isNullOrUndefined)((0, core_1.getInput)("dry-run"))
@@ -92,7 +94,6 @@ exports.action = {
             (0, core_1.getInput)("ssh-key").toLowerCase() === "true"
             ? true
             : (0, core_1.getInput)("ssh-key"),
-    targetFolder: (0, core_1.getInput)("target-folder"),
     workspace: process.env.GITHUB_WORKSPACE || "",
     tag: (0, core_1.getInput)("tag"),
 };

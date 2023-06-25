@@ -16,10 +16,10 @@ exports.deploy = exports.init = void 0;
 const core_1 = require("@actions/core");
 const io_1 = require("@actions/io");
 const fs_1 = __importDefault(require("fs"));
-const constants_1 = require("./constants");
-const execute_1 = require("./execute");
+const constants_1 = require("../constants");
+const execute_1 = require("../execute");
 const worktree_1 = require("./worktree");
-const util_1 = require("./util");
+const util_1 = require("../util");
 /**
  * Initializes git in the workspace.
  */
@@ -103,16 +103,16 @@ function deploy(action) {
                     excludes += `--exclude ${item} `;
                 }
             }
-            if (action.targetFolder) {
+            if (action.folder) {
                 (0, core_1.info)(`Creating target folder if it doesn't already exist… 📌`);
-                yield (0, io_1.mkdirP)(`${temporaryDeploymentDirectory}/${action.targetFolder}`);
+                yield (0, io_1.mkdirP)(`${temporaryDeploymentDirectory}/${action.folder}`);
             }
             /*
               Pushes all of the build files into the deployment directory.
               Allows the user to specify the root if '.' is provided.
               rsync is used to prevent file duplication. */
-            yield (0, execute_1.execute)(`rsync -q -av --checksum --progress ${action.folderPath}/. ${action.targetFolder
-                ? `${temporaryDeploymentDirectory}/${action.targetFolder}`
+            yield (0, execute_1.execute)(`rsync -q -av --checksum --progress ${action.folderPath}/. ${action.folder
+                ? `${temporaryDeploymentDirectory}/${action.folder}`
                 : temporaryDeploymentDirectory} ${action.clean
                 ? `--delete ${excludes} ${!fs_1.default.existsSync(`${action.folderPath}/${constants_1.DefaultExcludedFiles.CNAME}`)
                     ? `--exclude ${constants_1.DefaultExcludedFiles.CNAME}`
@@ -138,7 +138,7 @@ function deploy(action) {
                 )).stdout);
             if ((!action.singleCommit && !hasFilesToCommit) ||
                 // Ignores the case where single commit is true with a target folder to prevent incorrect early exiting.
-                (action.singleCommit && !action.targetFolder && !hasFilesToCommit)) {
+                (action.singleCommit && !action.folder && !hasFilesToCommit)) {
                 return constants_1.Status.SKIPPED;
             }
             // Commits to GitHub.
