@@ -18,14 +18,6 @@ export interface ActionInterface {
 
   /** The branch that the action should deploy to. */
   branch: string;
-  /** git push with --dry-run */
-  dryRun?: boolean | null;
-  /** If your project generates hashed files on build you can use this option to automatically delete them from the deployment branch with each deploy. This option can be toggled on by setting it to true. */
-  clean?: boolean | null;
-  /** If you need to use CLEAN but you'd like to preserve certain files or folders you can use this option. */
-  cleanExclude?: string[];
-  /** If you need to customize the commit message for an integration you can do so. */
-  commitMessage?: string;
   /** The hostname of which the GitHub Workflow is being run on, ie: github.com */
   hostname?: string;
   /** The git config email. */
@@ -34,32 +26,22 @@ export interface ActionInterface {
   folder: string;
   /** The auto generated folder path. */
   folderPath?: string;
-  /** Whether to force-push or attempt to merge existing changes. */
-  force?: boolean;
   /** Determines test scenarios the action is running in. */
   isTest: TestFlag;
   /** The git config name. */
   name?: string;
   /** The repository path, for example JamesIves/github-pages-deploy-action. */
   repositoryName?: string;
-  /** The fully qualified repository path, this gets auto generated if repositoryName is provided. */
-  repositoryPath?: string;
-  /** Wipes the commit history from the deployment branch in favor of a single commit. */
-  singleCommit?: boolean | null;
   /** Determines if the action should run in silent mode or not. */
   silent: boolean;
   /** Defines an SSH private key that can be used during deployment. This can also be set to true to use SSH deployment endpoints if you've already configured the SSH client outside of this package. */
   sshKey?: string | boolean | null;
-  /** If you'd like to push the contents of the deployment folder into a specific directory on the deployment branch you can specify it here. */
-  targetFolder?: string;
   /** Deployment token. */
   token?: string | null;
   /** The token type, ie ssh/token, this gets automatically generated. */
   tokenType?: string;
   /** The folder where your deployment project lives. */
   workspace: string;
-  /** GitHub tag name */
-  tag?: string | null;
 }
 /* Required action data that gets initialized when running within the GitHub Actions environment. */
 export const action: ActionInterface = {
@@ -69,19 +51,6 @@ export const action: ActionInterface = {
     : "badges",
 
   branch: getInput("branch"),
-  commitMessage: getInput("commit-message"),
-  dryRun: !isNullOrUndefined(getInput("dry-run"))
-    ? getInput("dry-run").toLowerCase() === "true"
-    : false,
-  force: !isNullOrUndefined(getInput("force"))
-    ? getInput("force").toLowerCase() === "true"
-    : true,
-  clean: !isNullOrUndefined(getInput("clean"))
-    ? getInput("clean").toLowerCase() === "true"
-    : false,
-  cleanExclude: (getInput("clean-exclude") || "")
-    .split("\n")
-    .filter((l) => l !== ""),
   hostname: process.env.GITHUB_SERVER_URL
     ? stripProtocolFromUrl(process.env.GITHUB_SERVER_URL)
     : "github.com",
@@ -110,9 +79,6 @@ export const action: ActionInterface = {
     ? repository.full_name
     : process.env.GITHUB_REPOSITORY,
   token: getInput("token"),
-  singleCommit: !isNullOrUndefined(getInput("single-commit"))
-    ? getInput("single-commit").toLowerCase() === "true"
-    : false,
   silent: !isNullOrUndefined(getInput("silent"))
     ? getInput("silent").toLowerCase() === "true"
     : false,
@@ -122,11 +88,7 @@ export const action: ActionInterface = {
       getInput("ssh-key").toLowerCase() === "true"
     ? true
     : getInput("ssh-key"),
-  targetFolder: !isNullOrUndefined(getInput("target-folder"))
-    ? getInput("target-folder")
-    : "badges",
   workspace: process.env.GITHUB_WORKSPACE || "",
-  tag: getInput("tag"),
 };
 
 /** Types for the required action parameters. */
